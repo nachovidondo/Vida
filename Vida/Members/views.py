@@ -23,9 +23,11 @@ class Login(FormView):
     def dispatch(self,request,*args, **kwargs):
         if request.user.is_authenticated:
             #USER AUTHENTICATED -> INDEX
-            return HttpResponseRedirect(self.get.success_url())
+            print("IIIIIIIIIIII")
+            return render (request, 'mysite.html')
         #USER NOT AUTHENTICADED ->LOGIN AGAIN
         else:
+     
             return super(Login,self).dispatch(request, *args, **kwargs)
     
     def form_valid(self,form):

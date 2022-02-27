@@ -116,8 +116,18 @@ STATIC_URL = '/static/'
 #Bootsrap 4 Crispy Forms
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-
+AUTH_USER_MODEL = 'Members.User'
 
 #Configuracion de  Archivos media
 MEDIA_URL= 'HomeApp/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+#Email configurations
+
+EMAIL_BACKEND ="django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER ='ripiocurrencies@gmail.com'
+EMAIL_HOST_PASSWORD = 'Ripio1234' 
