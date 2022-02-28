@@ -21,8 +21,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'Users',
     'crispy_forms',
-    'HomeApp','Members',
+    'HomeApp',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -116,7 +117,7 @@ STATIC_URL = '/static/'
 #Bootsrap 4 Crispy Forms
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-AUTH_USER_MODEL = 'Members.User'
+AUTH_USER_MODEL = 'Users.User'
 
 #Configuracion de  Archivos media
 MEDIA_URL= 'HomeApp/media/'

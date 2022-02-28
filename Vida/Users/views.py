@@ -1,17 +1,22 @@
-
-from django.shortcuts import render, redirect
-from django.core.mail import send_mail
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render,redirect
+from django.views.generic.edit import FormView, CreateView
+from .forms import LoginForm
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import login, logout
 from django.http import HttpResponseRedirect
-from django.views.generic.edit import FormView
-from django.views.generic import CreateView, View, FormView
+
 
 from .models import User
-from .forms import UserForm, LoginForm
+from .forms import UserForm
+
+
+
+
+
 
 class Login(FormView):
     template_name = 'login.html'
@@ -20,24 +25,24 @@ class Login(FormView):
     
     @method_decorator(csrf_protect)
     @method_decorator(never_cache)
+    
     def dispatch(self,request,*args, **kwargs):
+        #USER AUTHENTICADED -> MYSITE
         if request.user.is_authenticated:
-            #USER AUTHENTICATED -> INDEX
-            print("IIIIIIIIIIII")
-            return render (request, 'mysite.html')
+            return HttpResponseRedirect(self.get_success_url())
+        
         #USER NOT AUTHENTICADED ->LOGIN AGAIN
         else:
      
-            return super(Login,self).dispatch(request, *args, **kwargs)
+            return super(Login,self).dispatch(request,*args,**kwargs)
     
     def form_valid(self,form):
         #SAVE THE USER
         login(self.request,form.get_user())
-        #LOGIN SEND EMAIL TO THE USER
+
        
         return super(Login,self).form_valid(form)
         
-
 
 class UserRegister(CreateView):
     model = User
@@ -63,7 +68,7 @@ class UserRegister(CreateView):
 
 def logoutUsuario(request):
     logout(request)
-    return HttpResponseRedirect('login')
+    return HttpResponseRedirect('accounts/login')
 
 
 

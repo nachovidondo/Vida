@@ -2,22 +2,19 @@ from django import forms
 from .models import User
 from django.contrib.auth.forms import AuthenticationForm
 
-
 #CUSTOM LOGIN FORM
 class LoginForm(AuthenticationForm):
-    def __init__(self,*args,**kwargs):
+    def __init__(self, *args, **kwargs):
         super(LoginForm,self).__init__(*args, **kwargs)
         self.fields['username'].widget.attrs['class'] = 'form-control'
         self.fields['username'].widget.attrs['placeholder'] = 'Username'
         self.fields['password'].widget.attrs['class'] = 'form-control'
         self.fields['password'].widget.attrs['placeholder'] = 'Password'
         
-        def get_invalid_login_error(self):
-            return forms.ValidationError(
-                self.error_messages['invalid_login'],
-                code = 'invalid_login',
-                params = {'username':self.username_field.verbose_name}
-            )
+        
+        
+        
+        
 #CUSTOM USER FORM , TO REGISTER A NEW USER IN THE DATABASE
 class UserForm(forms.ModelForm):
     password1 = forms.CharField(label="Password", widget = forms.PasswordInput(
@@ -43,7 +40,7 @@ class UserForm(forms.ModelForm):
         'email':forms.EmailInput(
             attrs={
                 'class':'form-control',
-                'placeholder':'Correo electronico',
+                'placeholder':'Emailww',
                 }
             )
         },
