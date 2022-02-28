@@ -68,7 +68,7 @@ class UserRegister(CreateView):
 
 def logoutUsuario(request):
     logout(request)
-    return HttpResponseRedirect('accounts/login')
+    return HttpResponseRedirect('/accounts/login')
 
 
 
