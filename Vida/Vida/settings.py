@@ -21,15 +21,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'Users',
-    'crispy_forms',
-    'HomeApp',
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'Users',
+    'crispy_forms','HomeApp',
 ]
 
 MIDDLEWARE = [
@@ -134,8 +134,24 @@ EMAIL_HOST_USER ='ripiocurrencies@gmail.com'
 EMAIL_HOST_PASSWORD = 'Ripio1234' 
 
 
-
-
 #Django crispy forms
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+#Django Jazzmin Package
+
+JAZZMIN_SETTINGS = {
+    "site_title": "Vida Admin",
+    "site_header": "Vida",
+    "welcome_sign": "Welcome to Vida Admin",
+    "copyright": "Vida ",
+    # Whether to display the side menu
+    "show_sidebar": True,
+ 
+    # Whether to aut expand the menu
+    "navigation_expanded": True,
+     "changeform_format": "horizontal_tabs",
+    # override change forms on a per modeladmin basis
+    "changeform_format_overrides": {"auth.user": "collapsible", "auth.group": "vertical_tabs"},
+
+}

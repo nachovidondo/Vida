@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
+from django.contrib.auth.models import PermissionsMixin
+
+
 
 
 class UserManager(BaseUserManager):
@@ -30,7 +33,7 @@ class UserManager(BaseUserManager):
         return user
 
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser,PermissionsMixin):
     id = models.AutoField(primary_key=True)
     username = models.CharField(
         max_length=200, blank=False, null=False, unique=True
