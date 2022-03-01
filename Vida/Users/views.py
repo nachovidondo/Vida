@@ -47,7 +47,7 @@ class Login(FormView):
 class UserRegister(CreateView):
     model = User
     form_class = UserForm
-    template_name = 'register.htm'
+    template_name = 'register.html'
     
     def post(self,request,*args, **kwargs):
         # METHOD TO SAVE THE PASSWORD ENCRIPTED

@@ -1,10 +1,9 @@
 from django.urls import path
 from django.contrib.auth  import views as auth_views 
+from django.contrib.auth.decorators import login_required
 
-
-from .views import UserRegister
-from Users import views
-
+from .views import UserRegister, mysite
+     
 
 urlpatterns = [
      path('register/',UserRegister.as_view(), name='register'),
@@ -29,5 +28,5 @@ urlpatterns = [
               template_name='ResetPassword/password_reset_done.html'
               ), 
          name='password_reset_complete'),
-     path('mysite/', views.mysite, name="mysite"),
+     path('mysite/', login_required(mysite), name="mysite"),
     ]
