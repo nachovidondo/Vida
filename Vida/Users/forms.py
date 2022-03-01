@@ -2,6 +2,7 @@ from django import forms
 from .models import User
 from django.contrib.auth.forms import AuthenticationForm
 
+
 #CUSTOM LOGIN FORM
 class LoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
@@ -11,10 +12,7 @@ class LoginForm(AuthenticationForm):
         self.fields['password'].widget.attrs['class'] = 'form-control'
         self.fields['password'].widget.attrs['placeholder'] = 'Password'
         
-        
-        
-        
-        
+            
 #CUSTOM USER FORM , TO REGISTER A NEW USER IN THE DATABASE
 class UserForm(forms.ModelForm):
     password1 = forms.CharField(label="Password", widget = forms.PasswordInput(
