@@ -48,16 +48,16 @@ class UserRegister(CreateView):
     model = User
     form_class = UserForm
     template_name = 'register.html'
-    
     def post(self,request,*args, **kwargs):
         # METHOD TO SAVE THE PASSWORD ENCRIPTED
-        form = self.form_class(request.POST)
+        form = self.form_class(request.POST,request.FILES)
         if form.is_valid():
             new_user = User(
                 email = form.cleaned_data.get('email'),
                 username = form.cleaned_data.get('username'),
                 name = form.cleaned_data.get('name'),
-                surname = form.cleaned_data.get('surname')
+                surname = form.cleaned_data.get('surname'),
+                image = form.cleaned_data.get('image')
                 )
             new_user.set_password(form.cleaned_data.get('password1'))
             new_user.save()
@@ -73,6 +73,8 @@ def logoutUsuario(request):
 
 
 def mysite(request):
+    
+
     return render (request, 'mysite.html')
 
 

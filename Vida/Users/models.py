@@ -15,6 +15,7 @@ class UserManager(BaseUserManager):
             email=self.normalize_email(email),
             name=name,
             surname=surname,
+            
             )
         user.set_password(password)
         user.save()
@@ -25,7 +26,9 @@ class UserManager(BaseUserManager):
             username=username,
             name=name,
             surname=surname,
-            password=password
+            password=password,
+       
+        
             )
         user.is_admin = True
         user.is_active=True
@@ -46,9 +49,7 @@ class User(AbstractBaseUser,PermissionsMixin):
         max_length=200, verbose_name="Surname", blank=True, null=True
         )
     creation_date = models.DateTimeField(auto_now=True, verbose_name="Date")
-    image = models.ImageField(
-        verbose_name="Profile photo", upload_to='profile/', blank=True, null=True
-        )
+    image = models.ImageField(verbose_name="Image", upload_to='profile/', blank=True, null=True, default="profile.png")
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
@@ -61,7 +62,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     #ATRIBUTE TO GET THE LOGIN
     USERNAME_FIELD = 'username'
     #FIELDS REQUIRED TO CREATE THE NEW USER
-    REQUIRED_FIELDS = ['email', 'name','surname']
+    REQUIRED_FIELDS = ['email', 'name','surname',]
     
     def __str__(self):
         return self.username

@@ -29,19 +29,33 @@ class UserForm(forms.ModelForm):
             'placeholder':'Enter your password again',
             'id':'password2',
             'required':'required'
-        }
+        },
+    
     ))
+    
+    
     class Meta:
         model = User
-        fields = ('email','username','name','surname')
-        widget = {
+        fields = ['email','username','name','surname','image']
+        widget ={
+            'image':forms.ImageField()
+        },
+        { 
         'email':forms.EmailInput(
             attrs={
                 'class':'form-control',
-                'placeholder':'Emailww',
+                'placeholder':'Email',
                 }
             )
         },
+        {
+        'username':forms.TextInput(
+            attrs={
+                'class':'form-control',
+                'placeholder':'Enter your username',
+                }
+            )
+        }, 
         {
         'name':forms.TextInput(
             attrs={
@@ -57,15 +71,10 @@ class UserForm(forms.ModelForm):
                 'placeholder':'Enter your surname',
                 }
             )
-        },
-        {
-        'username':forms.TextInput(
-            attrs={
-                'class':'form-control',
-                'placeholder':'Enter your username',
-                }
-            )
-        }, 
+        }
+        
+       
+        
         def clean_password2(self):
             # BOTH PASSWORDS EQUAL?
             password1 = self.cleaned_data.get('password1')

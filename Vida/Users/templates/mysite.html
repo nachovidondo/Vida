@@ -1,3 +1,12 @@
-<h1>my site!<h1>
 
+  <h2>Bienvenido {{user|title}}</h2>
+
+<div>
+{% if user.image %}
+    <img src="{{ user.image.url }}">
+
+{% endif %}
+    <h3>{{user.name}}</h3>
+    <h4>{{user.email}}</h4>
+</div>
     <a href="{% url 'logout' %}">Logout</a> 
