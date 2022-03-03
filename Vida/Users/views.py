@@ -1,21 +1,15 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render,redirect
-from django.views.generic.edit import FormView, CreateView
-from .forms import LoginForm
+from django.views.generic.edit import FormView, CreateView, UpdateView
+from .forms import LoginForm, AccountSettingsForm
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import login, logout
 from django.http import HttpResponseRedirect
-
-
 from .models import User
 from .forms import UserForm
-
-
-
-
 
 
 class Login(FormView):
@@ -66,15 +60,20 @@ class UserRegister(CreateView):
             return render(request,self.template_name,{'form':form}) 
 
 
+#Edit Profile Photo
+class AccountSettings(UpdateView):
+    model = User
+    form_class =  AccountSettingsForm
+    template_name = 'account_settings.html'
+    success_url= reverse_lazy('mysite')
+
+
 def logoutUsuario(request):
     logout(request)
     return HttpResponseRedirect('/accounts/login')
 
-
-
-def mysite(request):
-    
-
+def mysite(request): 
     return render (request, 'mysite.html')
 
 
+ 

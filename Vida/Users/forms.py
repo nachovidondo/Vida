@@ -36,7 +36,7 @@ class UserForm(forms.ModelForm):
     
     class Meta:
         model = User
-        fields = ['email','username','name','surname','image']
+        fields = ['email','username','name','surname']
         widget ={
             'image':forms.ImageField()
         },
@@ -73,8 +73,6 @@ class UserForm(forms.ModelForm):
             )
         }
         
-       
-        
         def clean_password2(self):
             # BOTH PASSWORDS EQUAL?
             password1 = self.cleaned_data.get('password1')
@@ -82,4 +80,14 @@ class UserForm(forms.ModelForm):
             if password1 != password2:
                 raise forms.ValidationError('Password does not match')
             return password2
-        
+
+#Form to upload the User account (only for profile picture now)
+
+class AccountSettingsForm(forms.ModelForm):
+  class Meta:
+        model = User
+        fields = ['image']
+        widget ={
+            'image':forms.ImageField()
+        },
+       

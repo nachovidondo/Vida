@@ -1,9 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
-
+from  HomeApp.models import SubPlan
 from django.contrib.auth.models import PermissionsMixin
-
-
 
 
 class UserManager(BaseUserManager):
@@ -15,7 +13,6 @@ class UserManager(BaseUserManager):
             email=self.normalize_email(email),
             name=name,
             surname=surname,
-            
             )
         user.set_password(password)
         user.save()
@@ -27,8 +24,6 @@ class UserManager(BaseUserManager):
             name=name,
             surname=surname,
             password=password,
-       
-        
             )
         user.is_admin = True
         user.is_active=True
@@ -48,6 +43,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     surname = models.CharField(
         max_length=200, verbose_name="Surname", blank=True, null=True
         )
+    subplan = models.ForeignKey(SubPlan, on_delete=models.CASCADE, default=1)
     creation_date = models.DateTimeField(auto_now=True, verbose_name="Date")
     image = models.ImageField(verbose_name="Image", upload_to='profile/', blank=True, null=True, default="profile.png")
     is_active = models.BooleanField(default=True)
