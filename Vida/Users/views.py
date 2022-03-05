@@ -10,7 +10,6 @@ from django.contrib.auth import login, logout
 from django.http import HttpResponseRedirect
 from .models import User
 from .forms import UserForm
-from HomeApp.models import Activity
 
 
 class Login(FormView):
@@ -74,8 +73,8 @@ def logoutUsuario(request):
     return HttpResponseRedirect('/')
 
 def mysite(request): 
-    activities = Activity.objects.all()
-    return render (request, 'mysite.html', {'activities' : activities } )
+ 
+    return render (request, 'mysite.html')
 
 
  

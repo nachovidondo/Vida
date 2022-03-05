@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms  import Contactform
-from . models import SubPlan
+from . models import Activity, SubPlan
 from django.core.mail import EmailMessage
 
 from django.shortcuts import render,reverse , redirect
@@ -50,3 +50,7 @@ def automatic(request):
 def suscriptions(request):
     suscriptions = SubPlan.objects.all()
     return render (request, 'suscriptions.html', {'suscriptions': suscriptions})
+
+def activities(request):
+    activities = Activity.objects.all()
+    return render (request, 'activity.html',{'activities' : activities})

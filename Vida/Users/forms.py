@@ -36,7 +36,7 @@ class UserForm(forms.ModelForm):
     
     class Meta:
         model = User
-        fields = ['email','username','name','surname']
+        fields = ['email','username','name','surname','mobile']
         widget ={
             'image':forms.ImageField()
         },

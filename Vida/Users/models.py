@@ -43,6 +43,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     surname = models.CharField(
         max_length=200, verbose_name="Surname", blank=True, null=True
         )
+    mobile = models.CharField(max_length=200, default= "----")
     subplan = models.ForeignKey(SubPlan, on_delete=models.CASCADE, default=1)
     status = models.BooleanField(default=True)
     #activity = models.ForeignKey(Activity, on_delete=models.CASCADE)

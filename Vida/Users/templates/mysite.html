@@ -16,11 +16,7 @@
     {% endif %}
 </div>
 
-<div>
-    {% if activities %}{% for activity in activities %}
-    {{activity.title}}
-    {% endfor %}
-    {% endif %}
 
-</div>
+<a href="{% url 'activities' %}">Activities</a> 
+
     <a href="{% url 'logout' %}">Logout</a> 
