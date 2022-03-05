@@ -4,6 +4,7 @@
 
 {{ activity.title }}
 {{ activity.date_time }}
+<td><a href="{% url 'activity_join' activity.id %}"><button>Join Activity </button></a></td>
 <br>
 {% endfor %}
 </div>

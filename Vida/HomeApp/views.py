@@ -1,9 +1,12 @@
 from django.shortcuts import render
-from .forms  import Contactform
+from .forms  import Contactform, JoinActivityForm
 from . models import Activity, SubPlan
 from django.core.mail import EmailMessage
 
 from django.shortcuts import render,reverse , redirect
+from django.urls import reverse_lazy
+
+from django.views.generic.edit import  UpdateView
 
 # Create your views here.
 
@@ -54,3 +57,12 @@ def suscriptions(request):
 def activities(request):
     activities = Activity.objects.all()
     return render (request, 'activity.html',{'activities' : activities})
+
+
+
+#Join Activity
+class JoinActivity(UpdateView):
+    model = Activity
+    form_class = JoinActivityForm
+    template_name = 'activity_form.html'
+    success_url= reverse_lazy('mysite')
