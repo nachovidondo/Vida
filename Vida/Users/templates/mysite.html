@@ -10,5 +10,17 @@
 
     <h3>{{user.name}}</h3>
     <h4>{{user.email}}</h4>
+    <h4>{{user.subplan}}</h4>
+    {% if user.status %}
+    <h4>Membership is active</h4>
+    {% endif %}
+</div>
+
+<div>
+    {% if activities %}{% for activity in activities %}
+    {{activity.title}}
+    {% endfor %}
+    {% endif %}
+
 </div>
     <a href="{% url 'logout' %}">Logout</a> 

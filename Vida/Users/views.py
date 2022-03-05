@@ -10,6 +10,7 @@ from django.contrib.auth import login, logout
 from django.http import HttpResponseRedirect
 from .models import User
 from .forms import UserForm
+from HomeApp.models import Activity
 
 
 class Login(FormView):
@@ -70,10 +71,11 @@ class AccountSettings(UpdateView):
 
 def logoutUsuario(request):
     logout(request)
-    return HttpResponseRedirect('/accounts/login')
+    return HttpResponseRedirect('/')
 
 def mysite(request): 
-    return render (request, 'mysite.html')
+    activities = Activity.objects.all()
+    return render (request, 'mysite.html', {'activities' : activities } )
 
 
  

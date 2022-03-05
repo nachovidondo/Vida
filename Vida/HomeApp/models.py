@@ -22,3 +22,14 @@ class SubPlanFeature(models.Model):
     
     def __str__(self):
         return self.title
+    
+    
+class Activity(models.Model):
+    title = models.CharField(max_length=200)
+    date_time = models.DateTimeField()
+    status = models.BooleanField(default=False)
+    clients = models.IntegerField(default = 0)
+    
+    def __str__(self):
+        return self.title
+    
