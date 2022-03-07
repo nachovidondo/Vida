@@ -1,5 +1,5 @@
 from django import forms
-from .models import User
+from .models import User, UserActivity
 from django.contrib.auth.forms import AuthenticationForm
 
 
@@ -81,10 +81,16 @@ class UserForm(forms.ModelForm):
                 raise forms.ValidationError('Password does not match')
             return password2
 
-#Form to upload the User account (only for profile picture now)
-
-class AccountSettingsForm(forms.ModelForm):
+#Form to join an activity
+class UserActivityForm(forms.ModelForm):
   class Meta:
+        model = UserActivity
+        fields = ['activity']
+
+      
+#Form to upload the User account (only for profile picture now)
+class AccountSettingsForm(forms.ModelForm):
+      class Meta:
         model = User
         fields = ['image']
         widget ={

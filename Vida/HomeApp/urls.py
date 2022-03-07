@@ -11,6 +11,5 @@ urlpatterns = [
     path('automatic/', views.automatic, name="automatic"),
     path('suscriptions/', views.suscriptions, name ="suscriptions"),
     path('activities/', views.activities, name ="activities"),
-    path('activity_join/<int:pk>',login_required(views.JoinActivity.as_view()), 
-         name='activity_join'),
+   
 ]   

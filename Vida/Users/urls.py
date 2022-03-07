@@ -2,7 +2,7 @@ from django.urls import path
 from django.contrib.auth  import views as auth_views 
 from django.contrib.auth.decorators import login_required
 
-from .views import UserRegister, mysite, AccountSettings
+from .views import JoinActivity, UserRegister, mysite, AccountSettings, MyActivities
 
 
      
@@ -33,4 +33,6 @@ urlpatterns = [
      path('mysite/', login_required(mysite), name="mysite"),
      path('account_settings/<int:pk>',login_required(AccountSettings.as_view()), 
          name='account_settings'),
+     path('user_activity/',login_required(JoinActivity.as_view()), name="user_activity"),
+     path('my_activities/',login_required(MyActivities.as_view()), name="my_activities")
     ]

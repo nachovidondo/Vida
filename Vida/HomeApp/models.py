@@ -1,12 +1,7 @@
 from django.db import models
 
 
-
-
-
 # Suscription Plan
-
-
 class SubPlan(models.Model):
     title = models.CharField(max_length=200)
     price = models.IntegerField()
@@ -14,8 +9,8 @@ class SubPlan(models.Model):
     def __str__(self):
         return self.title
     
-# Suscription plan features
 
+# Suscription plan features
 class SubPlanFeature(models.Model):
     subplan = models.ForeignKey(SubPlan, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)

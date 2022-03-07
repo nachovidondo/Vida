@@ -59,10 +59,3 @@ def activities(request):
     return render (request, 'activity.html',{'activities' : activities})
 
 
-
-#Join Activity
-class JoinActivity(UpdateView):
-    model = Activity
-    form_class = JoinActivityForm
-    template_name = 'activity_form.html'
-    success_url= reverse_lazy('mysite')

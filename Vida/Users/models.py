@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
-from  HomeApp.models import SubPlan
+from  HomeApp.models import SubPlan, Activity
 from django.contrib.auth.models import PermissionsMixin
 
 
@@ -74,4 +74,13 @@ class User(AbstractBaseUser,PermissionsMixin):
     def is_staff(self):
         return self.is_admin
 
+
+class UserActivity(models.Model):
+    activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.activity.title
+    
+    
     
