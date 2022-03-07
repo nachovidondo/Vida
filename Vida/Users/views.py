@@ -94,9 +94,13 @@ class JoinActivity(CreateView):
                 activity = form.cleaned_data.get('activity'),
                 user= user_id)
             user.save()
-            return redirect('mysite')
+            return redirect('automatic_activity')
         else:
             return render(request,self.template_name,{'form':form}) 
+
+#Automatic Message
+def automatic_activity(request):
+    return render(request, 'automatic_activity.html')
 
 # List of User Activities
 class MyActivities(ListView):

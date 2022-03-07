@@ -12,8 +12,6 @@ class SubPlanFeatureAdmin(admin.ModelAdmin):
     list_display=['title','subplan']
     
     
-    
 @admin.register(Activity)
 class ActivityAdmin(admin.ModelAdmin):
-    list_display=['title', 'status']
-
+    list_display=['title', 'status','date_time']
