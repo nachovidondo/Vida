@@ -3,6 +3,8 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from  HomeApp.models import SubPlan, Activity
 from django.contrib.auth.models import PermissionsMixin
 
+from django.db.models.signals import post_save, post_delete
+
 
 class UserManager(BaseUserManager):
     def create_user(self,email,username,name,surname,password=None):
@@ -76,11 +78,21 @@ class User(AbstractBaseUser,PermissionsMixin):
 
 
 class UserActivity(models.Model):
-    activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
+    activity = models.ForeignKey(Activity, on_delete=models.CASCADE,unique=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
     def __str__(self):
         return self.activity.title
+
+
+#Signal to control the number of clients in the activity
+def activity_client_control(sender, instance, **kwargs):
+    activity_title = instance.activity
+    activity = Activity.objects.filter(id=activity_title.id).first()
+    user_activity = UserActivity.objects.filter(activity=activity)
+    users=user_activity.count()
+    activity.quantity_of_clients=users
+    activity.save()
     
-    
-    
+post_save.connect(activity_client_control,sender=UserActivity)
+post_delete.connect(activity_client_control,sender=UserActivity)

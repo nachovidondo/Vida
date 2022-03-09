@@ -24,8 +24,8 @@ class Activity(models.Model):
     date_time = models.DateTimeField()
     status = models.BooleanField(default=False)
     quantity_of_clients = models.IntegerField(default = 0)
-    clients_name = models.CharField(max_length=200, default = "----")
-    users = models.ManyToManyField("Users.User", related_name="User")
+    
+    users = models.ManyToManyField("Users.User", related_name="User",blank=True,null=True)
     
     def __str__(self):
         return self.title

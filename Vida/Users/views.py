@@ -88,7 +88,7 @@ class JoinActivity(CreateView):
     def post(self,request,*args, **kwargs):
         form = self.form_class(request.POST)
         user_id = self.request.user
-        print(user_id)
+        
         if form.is_valid():
             user = UserActivity(
                 activity = form.cleaned_data.get('activity'),
