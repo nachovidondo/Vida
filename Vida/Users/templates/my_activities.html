@@ -1,5 +1,9 @@
+{% if object_list %}
 {% for activity in object_list %}
 {{activity.activity.title}}
 {{activity.activity.date_time}}
 <td><a href="{% url 'delete_activity' activity.id %}"><button>Delete</button></a></td>
 {% endfor %}
+{% else %}
+<h1>You dont have any activities</h1>
+{% endif %}

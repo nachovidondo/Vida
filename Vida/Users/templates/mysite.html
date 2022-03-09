@@ -1,11 +1,11 @@
 
-  <h2>Bienvenido {{user|title}}</h2>
+  <h2 align="center">Bienvenido {{user|title}}</h2>
 
 <div>
 {% if user.image %}
     <img src="{{ user.image.url }}" hight=100px, width=90px>
 {% endif %}
-    <td><a href="{% url 'account_settings' user.id %}"><button>Account Settings</button></a></td>
+    <td><a href="{% url 'account_settings' user.id %}"><button>edit photo</button></a></td>
 
 
     <h3>{{user.name}}</h3>
@@ -17,9 +17,9 @@
 </div>
 
 
-<a href="{% url 'activities' %}">Activities Availables</a> 
+<a href="{% url 'activities' %}" ><button type="button">Activities Availables</button></a> 
 
-<a href="{% url 'my_activities' %}">My activities</a> 
+<a href="{% url 'my_activities' %}"><button type="button">My activities</button></a> 
 
 
-    <a href="{% url 'logout' %}">Logout</a> 
+<a href="{% url 'logout' %}"><button type="button">Logout</button></a> 

@@ -11,7 +11,11 @@ from django.contrib.auth import login, logout
 from django.http import HttpResponseRedirect
 from .models import User, UserActivity
 from .forms import UserForm, UserActivityForm
+from datetime import datetime
 
+from HomeApp.models import Activity
+
+from django.db.models.functions import Cast
 #User Login
 class Login(FormView):
     template_name = 'login.html'
@@ -113,3 +117,16 @@ class MyActivities(ListView):
 class DeleteActivity(DeleteView):
     model = UserActivity
     success_url = reverse_lazy('mysite')
+    #Override Post Save 
+"""def post(self,request,pk,*args, **kwargs):
+        user_activity = UserActivity.objects.get(id=pk)
+     
+        print(time)
+        print(user_activity.activity)
+        activity = Activity.objects.get(title = user_activity.activity)
+        current_time = datetime.now().strftime('%H:%M:%S')   
+        print(current_time)"""
+        
+    
+
+    

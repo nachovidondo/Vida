@@ -86,6 +86,8 @@ class UserActivityForm(forms.ModelForm):
     class Meta:
         model = UserActivity
         fields = ['activity']
+        
+        
        
 #Form to upload the User account (only for profile picture now)
 class AccountSettingsForm(forms.ModelForm):
