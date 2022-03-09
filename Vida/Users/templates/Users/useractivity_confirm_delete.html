@@ -1,0 +1,10 @@
+
+
+<form method="POST">
+    {% csrf_token %}
+    <p>¿Would you like to delete {{useractivity.activity.title}} at {{useractivity.activity.date_time}}  ?</p>
+    <button type="submit">Confirm</button>
+    <a href="{% url 'mysite' %}"><button type="button">Cancel</button></a>
+
+</form>
+

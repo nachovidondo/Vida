@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render,redirect
-from django.views.generic.edit import FormView, CreateView, UpdateView
+from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
 from django.views.generic import ListView 
 from .forms import LoginForm, AccountSettingsForm
 from django.urls import reverse_lazy
@@ -12,7 +12,7 @@ from django.http import HttpResponseRedirect
 from .models import User, UserActivity
 from .forms import UserForm, UserActivityForm
 
-
+#User Login
 class Login(FormView):
     template_name = 'login.html'
     form_class = LoginForm
@@ -38,7 +38,7 @@ class Login(FormView):
        
         return super(Login,self).form_valid(form)
         
-
+#User new account
 class UserRegister(CreateView):
     model = User
     form_class = UserForm
@@ -79,7 +79,6 @@ def mysite(request):
     return render (request, 'mysite.html')
 
 #User activity Join
-
 class JoinActivity(CreateView):
     model = UserActivity
     form_class = UserActivityForm
@@ -110,3 +109,7 @@ class MyActivities(ListView):
         #QUERYSET TO FILTER BY USER LOGIN  ACTIVITIES
         queryset = UserActivity.objects.filter(user=self.request.user)
         return queryset
+    
+class DeleteActivity(DeleteView):
+    model = UserActivity
+    success_url = reverse_lazy('mysite')

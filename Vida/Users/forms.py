@@ -83,11 +83,10 @@ class UserForm(forms.ModelForm):
 
 #Form to join an activity
 class UserActivityForm(forms.ModelForm):
-  class Meta:
+    class Meta:
         model = UserActivity
         fields = ['activity']
-
-      
+       
 #Form to upload the User account (only for profile picture now)
 class AccountSettingsForm(forms.ModelForm):
       class Meta:
