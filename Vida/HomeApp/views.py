@@ -5,7 +5,9 @@ from django.core.mail import EmailMessage
 
 from django.shortcuts import render,reverse , redirect
 from django.urls import reverse_lazy
-
+from datetime import timezone
+import datetime
+from datetime import datetime, timedelta
 from django.views.generic.edit import  UpdateView
 
 # Create your views here.
@@ -55,7 +57,12 @@ def suscriptions(request):
     return render (request, 'suscriptions.html', {'suscriptions': suscriptions})
 
 def activities(request):
-    activities = Activity.objects.all()
+    
+    now = datetime.now(timezone.utc)
+    #Activities filter from now to the future
+    activities = Activity.objects.filter(date_time__gte=now)
+    
+    
     return render (request, 'activity.html',{'activities' : activities})
 
 

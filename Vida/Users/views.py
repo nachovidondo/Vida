@@ -11,7 +11,7 @@ from django.contrib.auth import login, logout
 from django.http import HttpResponseRedirect
 from .models import User, UserActivity
 from .forms import UserForm, UserActivityForm
-from datetime import datetime
+from datetime import datetime, timezone
 
 from HomeApp.models import Activity
 
@@ -87,7 +87,6 @@ class JoinActivity(CreateView):
     model = UserActivity
     form_class = UserActivityForm
     template_name = 'user_activity.html'
-    # METHOD TO SAVE THE User ID with the activity
     def post(self,request,*args, **kwargs):
         form = self.form_class(request.POST)
         user_id = self.request.user
