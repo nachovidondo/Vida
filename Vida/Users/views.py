@@ -15,7 +15,7 @@ from datetime import datetime, timezone
 
 from HomeApp.models import Activity
 
-from django.db.models.functions import Cast
+
 #User Login
 class Login(FormView):
     template_name = 'login.html'
@@ -87,6 +87,7 @@ class JoinActivity(CreateView):
     model = UserActivity
     form_class = UserActivityForm
     template_name = 'user_activity.html'
+    
     def post(self,request,*args, **kwargs):
         form = self.form_class(request.POST)
         user_id = self.request.user
@@ -116,16 +117,7 @@ class MyActivities(ListView):
 class DeleteActivity(DeleteView):
     model = UserActivity
     success_url = reverse_lazy('mysite')
-    #Override Post Save 
-"""def post(self,request,pk,*args, **kwargs):
-        user_activity = UserActivity.objects.get(id=pk)
-     
-        print(time)
-        print(user_activity.activity)
-        activity = Activity.objects.get(title = user_activity.activity)
-        current_time = datetime.now().strftime('%H:%M:%S')   
-        print(current_time)"""
-        
+
     
 
     

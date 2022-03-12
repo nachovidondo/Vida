@@ -1,7 +1,8 @@
 from django import forms
-from .models import User, UserActivity
+from .models import User, UserActivity, Activity
 from django.contrib.auth.forms import AuthenticationForm
 
+from datetime import datetime ,timedelta, timezone
 
 #CUSTOM LOGIN FORM
 class LoginForm(AuthenticationForm):
@@ -83,12 +84,16 @@ class UserForm(forms.ModelForm):
 
 #Form to join an activity
 class UserActivityForm(forms.ModelForm):
+    #Filter to show activities in the future 
+    def __init__(self, *args, **kargs):
+         super().__init__(*args, **kargs)
+         now = datetime.now(timezone.utc)
+         self.fields['activity'].queryset = Activity.objects.filter(date_time__gte=now)
+
     class Meta:
         model = UserActivity
         fields = ['activity']
         
-        
-       
 #Form to upload the User account (only for profile picture now)
 class AccountSettingsForm(forms.ModelForm):
       class Meta:
