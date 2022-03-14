@@ -11,5 +11,5 @@ class UserAdmin(admin.ModelAdmin):
     
 @admin.register(UserActivity)
 class UserActivityAdmin(admin.ModelAdmin):
-    list_display=['activity', 'user',]
+    list_display=['activity', 'user']
     search_fields = ['activity__title','activity__date_time','user__username']

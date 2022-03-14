@@ -82,7 +82,7 @@ class UserActivity(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
     def __str__(self):
-        return self.activity.title
+        return self.activity.title + str(self.activity.date_time)
 
 
 #Signal to control the number of clients in the activity

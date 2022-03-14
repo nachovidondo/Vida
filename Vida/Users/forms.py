@@ -84,12 +84,11 @@ class UserForm(forms.ModelForm):
 
 #Form to join an activity
 class UserActivityForm(forms.ModelForm):
-    #Filter to show activities in the future 
+    #Filter to show activities only from now to the future 
     def __init__(self, *args, **kargs):
          super().__init__(*args, **kargs)
          now = datetime.now(timezone.utc)
          self.fields['activity'].queryset = Activity.objects.filter(date_time__gte=now)
-
     class Meta:
         model = UserActivity
         fields = ['activity']

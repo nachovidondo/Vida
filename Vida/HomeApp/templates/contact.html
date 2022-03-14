@@ -1,40 +1,17 @@
-{% extends "base.html" %} {% block content %} {% load static %}
 
+{% load crispy_forms_tags %}
+{% block title %}Conctact us{% endblock %}
 
-<div class="container">
-
-
-    <div class="row ">
-
-
-        <article id="contact" class="panel">
-            <header>
-                <h2>Contact Us</h2>
-            </header>
-            <form action="" method="POST">
-                {% csrf_token %}
-                <div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            {{ form.name }}
-                        </div>
-                        <div class="col-md-5">
-                            {{ form.email }}
-                        </div>
-
-                        <div class="col-md-9">
-                            {{form.content}}
-                        </div>
-                        <div class="col-md-9" align="center">
-                            <input type="submit" class="btn btn-primary" value="Send Message ">
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </article>
-
-    </div>
+{% block content %}
+<div style="width: 450px;  margin: 0 auto; padding: 10px;">
+<h2>Contact us</h2>
+<form method="post" >
+  {% csrf_token %}
+  {{ form|crispy}}
+  <br>
+  <button class="btn btn-primary" type="submit">Contact</button>
+ 
+</form>
+<a href="{% url 'index' %}"><button class="btn btn-danger">Cancel</button></a>
 </div>
-</div>
-</div>
-{% endblock %}>
+{% endblock %}

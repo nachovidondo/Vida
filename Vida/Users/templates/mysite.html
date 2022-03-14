@@ -2,6 +2,14 @@
   <h2 align="center">Bienvenido {{user|title}}</h2>
 
 <div>
+  <div align="right">
+    <a href="{% url 'activities' %}" ><button type="button">Activities Availables</button></a> 
+    
+    <a href="{% url 'my_activities' %}"><button type="button">My activities</button></a> 
+    
+    
+    <a href="{% url 'logout' %}"><button type="button">Logout</button></a> 
+    </div>
 {% if user.image %}
     <img src="{{ user.image.url }}" hight=100px, width=90px>
 {% endif %}
@@ -10,16 +18,10 @@
 
     <h3>{{user.name}}</h3>
     <h4>{{user.email}}</h4>
-    <h4>{{user.subplan}}</h4>
+
+    <h4> Suscription: <b> {{user.subplan}}</b></h4>
     {% if user.status %}
     <h4>Membership is active</h4>
     {% endif %}
 </div>
 
-
-<a href="{% url 'activities' %}" ><button type="button">Activities Availables</button></a> 
-
-<a href="{% url 'my_activities' %}"><button type="button">My activities</button></a> 
-
-
-<a href="{% url 'logout' %}"><button type="button">Logout</button></a> 

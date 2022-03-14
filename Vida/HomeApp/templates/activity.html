@@ -1,12 +1,25 @@
 {% if activities %}
+<h2 align="center">Activities  Availables </h3>
 <div>
-{% for activity in activities %}
-
-{{ activity.title }}
-{{ activity.date_time }}
-
-<br>
-{% endfor %}
+    <body>
+        <table border = "1" cellpadding = "5" cellspacing = "5" align="center">
+           <tr>
+              <th>Activity</th>
+              <th>Date Time</th>
+              <th>Status</th>
+           </tr>
+           <tr>{% for activity in activities %}
+               <td> {{ activity.title }}</td>
+            <td>{{ activity.date_time }}</td>
+            <td>{% if activity.status %} <span>&#10004;</span> active  {% endif %}</td>
+            {% endfor %}
+            </table>
+     </body>
+      
 </div>
-<td><a href="{% url 'user_activity' %}"><button>Join Activities </button></a></td>
+<br>
+<div align="center">
+<a href="{% url 'user_activity' %}"><button >Join Activities </button></a>
+</div>
 {% endif %}
+
