@@ -1,13 +1,47 @@
 
 
 <title>Your Activities</title>
-<h1>Your activities</h1>
+
+<div>
+    <div align="right">
+      <head>
+        <title><h1>Vida website</h1></title>
+        
+        <div align="right">
+    
+    
+      </head>
+      <a href="{% url 'activities' %}" ><button type="button">Activities Availables</button></a> 
+      
+     
+      <a href="{% url 'contact' %}"><button class="btn btn-danger">Contact us</button></a>
+      <a href="{% url 'logout' %}"><button type="button">Logout</button></a> 
+        </div>
+      </div>
+  
+<h1 align="center">Your activities</h1>
 {% if object_list %}
-{% for activity in object_list %}
-{{activity.activity.title}}
-{{activity.activity.date_time}}
-<td><a href="{% url 'delete_activity' activity.id %}"><button>Delete</button></a></td>
-{% endfor %}
+
+<div>
+    <body>
+        <table border = "1" cellpadding = "5" cellspacing = "5" align="center">
+           <tr>
+              <th>Activity</th>
+              <th>Date Time</th>
+              <th>Status</th>
+            
+           </tr>
+           <tr>{% for activity in object_list %}
+               <td> {{ activity.activity }}</td>
+            <td>{{ activity.activity.date_time }}</td>
+            <td>{% if activity.activity.status %} <span>&#10004;</span> active  {% endif %}</td>
+            <td><a href="{% url 'delete_activity' activity.id %}"><button>Delete</button></a></td>
+            {% endfor %}
+         </table>
+     </body>
+      
+</div>
+
 {% else %}
 <h5>You dont have any activities at the moment</h5>
 <a href="{% url 'activities' %}">Join activities </a>

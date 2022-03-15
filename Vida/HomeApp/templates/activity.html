@@ -7,13 +7,14 @@
               <th>Activity</th>
               <th>Date Time</th>
               <th>Status</th>
+              
            </tr>
            <tr>{% for activity in activities %}
                <td> {{ activity.title }}</td>
             <td>{{ activity.date_time }}</td>
             <td>{% if activity.status %} <span>&#10004;</span> active  {% endif %}</td>
             {% endfor %}
-            </table>
+         </table>
      </body>
       
 </div>

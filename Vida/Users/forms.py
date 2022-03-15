@@ -3,7 +3,6 @@ from .models import User, UserActivity, Activity
 from django.contrib.auth.forms import AuthenticationForm
 
 from datetime import datetime ,timedelta, timezone
-
 #CUSTOM LOGIN FORM
 class LoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):

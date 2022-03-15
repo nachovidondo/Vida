@@ -3,13 +3,22 @@
 
 <div>
   <div align="right">
+    <head>
+      <title><h1>Vida website</h1></title>
+      
+      <div align="right">
+  
+  
+    </head>
     <a href="{% url 'activities' %}" ><button type="button">Activities Availables</button></a> 
     
     <a href="{% url 'my_activities' %}"><button type="button">My activities</button></a> 
-    
-    
+    <a href="{% url 'contact' %}"><button class="btn btn-danger">Contact us</button></a>
     <a href="{% url 'logout' %}"><button type="button">Logout</button></a> 
+      </div>
     </div>
+
+    
 {% if user.image %}
     <img src="{{ user.image.url }}" hight=100px, width=90px>
 {% endif %}

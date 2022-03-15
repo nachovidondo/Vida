@@ -1,5 +1,23 @@
 
 {% load crispy_forms_tags %}
+
+<div>
+  <div align="right">
+    <head>
+      <title><h1>Vida website</h1></title>
+      
+      <div align="right">
+  
+  
+    </head>
+    <a href="{% url 'activities' %}" ><button type="button">Activities Availables</button></a> 
+    <a href="{% url 'mysite' %}"><button type="button">My site</button></a> 
+    <a href="{% url 'my_activities' %}"><button type="button">My activities</button></a> 
+    <a href="{% url 'contact' %}"><button class="btn btn-danger">Contact us</button></a>
+    <a href="{% url 'logout' %}"><button type="button">Logout</button></a> 
+      </div>
+    </div>
+
 {% block title %}Edit Profile Photo{% endblock %}
 
 {% block content %}

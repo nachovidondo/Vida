@@ -61,8 +61,6 @@ def activities(request):
     now = datetime.now(timezone.utc)
     #Activities filter from now to the future
     activities = Activity.objects.filter(date_time__gte=now)
-    
-    
     return render (request, 'activity.html',{'activities' : activities})
 
 

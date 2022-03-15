@@ -11,7 +11,8 @@ from django.contrib.auth import login, logout
 from django.http import HttpResponseRedirect
 from .models import User, UserActivity
 from .forms import UserForm, UserActivityForm
-from datetime import datetime, timezone
+
+from datetime import datetime ,timedelta, timezone
 
 from HomeApp.models import Activity
 
@@ -110,8 +111,10 @@ class MyActivities(ListView):
      model = UserActivity
      template_name = 'my_activities.html'
      def get_queryset(self):
-        #QUERYSET TO FILTER BY USER LOGIN  ACTIVITIES
-        queryset = UserActivity.objects.filter(user=self.request.user)
+        #QUERYSET TO FILTER BY USER LOGIN  ACTIVITIES AND ACTIVITIES IN THE FUTURE
+        now = datetime.now(timezone.utc)
+        activity = Activity.objects.get(date_time__gte=now)
+        queryset = UserActivity.objects.filter(user=self.request.user).filter(activity__title=activity.title)
         return queryset
     
 class DeleteActivity(DeleteView):
