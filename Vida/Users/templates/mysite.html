@@ -1,10 +1,10 @@
 
-  <h2 align="center">Bienvenido {{user|title}}</h2>
+  <h2 align="center">Welcome to {{user|title}}'s site</h2>
 
 <div>
   <div align="right">
     <head>
-      <title><h1>Vida website</h1></title>
+      <title>Vida website</title>
       
       <div align="right">
   
@@ -12,7 +12,7 @@
     </head>
     <a href="{% url 'activities' %}" ><button type="button">Activities Availables</button></a> 
     
-    <a href="{% url 'my_activities' %}"><button type="button">My activities</button></a> 
+    
     <a href="{% url 'contact' %}"><button class="btn btn-danger">Contact us</button></a>
     <a href="{% url 'logout' %}"><button type="button">Logout</button></a> 
       </div>
@@ -24,13 +24,43 @@
 {% endif %}
     <td><a href="{% url 'account_settings' user.id %}"><button>edit photo</button></a></td>
 
-
-    <h3>{{user.name}}</h3>
+<diV>
+    <h4>{{user.name}}</h4>
+    <h4>{{user.surname}}</h4>
     <h4>{{user.email}}</h4>
+    <h4>{{user.mobile}}</h4>
 
     <h4> Suscription: <b> {{user.subplan}}</b></h4>
     {% if user.status %}
     <h4>Membership is active</h4>
     {% endif %}
+</div>  
 </div>
 
+<h1 align="center">Your activities</h1>
+{% if user_activities %}
+
+<div>
+    <body>
+        <table border = "1" cellpadding = "5" cellspacing = "5" align="center">
+           <tr>
+              <th>Activity</th>
+              <th>Date Time</th>
+              <th>Status</th>
+            
+           </tr>
+           <tr>{% for activity in user_activities %}
+               <td> {{ activity.activity }}</td>
+            <td>{{ activity.activity.date_time }}</td>
+            <td>{% if activity.activity.status %} <span>&#10004;</span> active  {% endif %}</td>
+            <td><a href="{% url 'delete_activity' activity.id %}"><button>Delete</button></a></td>
+            {% endfor %}
+         </table>
+     </body>
+      
+</div>
+
+{% else %}
+<h5>You dont have any activities at the moment</h5>
+<a href="{% url 'activities' %}">Join activities </a>
+{% endif %}

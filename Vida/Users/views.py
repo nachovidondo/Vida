@@ -80,8 +80,11 @@ def logoutUsuario(request):
 
 #UserPlatform
 def mysite(request): 
- 
-    return render (request, 'mysite.html')
+    now = datetime.now(timezone.utc)
+    activity = Activity.objects.get(date_time__gte=now)
+    user_activities = UserActivity.objects.filter(user=request.user).filter(activity__title=activity.title)
+    
+    return render (request, 'mysite.html',{'user_activities': user_activities})
 
 #User activity Join
 class JoinActivity(CreateView):
@@ -106,17 +109,7 @@ class JoinActivity(CreateView):
 def automatic_activity(request):
     return render(request, 'automatic_activity.html')
 
-# List of User Activities
-class MyActivities(ListView):
-     model = UserActivity
-     template_name = 'my_activities.html'
-     def get_queryset(self):
-        #QUERYSET TO FILTER BY USER LOGIN  ACTIVITIES AND ACTIVITIES IN THE FUTURE
-        now = datetime.now(timezone.utc)
-        activity = Activity.objects.get(date_time__gte=now)
-        queryset = UserActivity.objects.filter(user=self.request.user).filter(activity__title=activity.title)
-        return queryset
-    
+
 class DeleteActivity(DeleteView):
     model = UserActivity
     success_url = reverse_lazy('mysite')
