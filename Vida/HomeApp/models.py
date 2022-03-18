@@ -28,5 +28,5 @@ class Activity(models.Model):
     users = models.ManyToManyField("Users.User", related_name="User",blank=True,null=True)
     
     def __str__(self):
-        return self.title
+        return self.title + " " + str(" - " )+ str(self.date_time)
     

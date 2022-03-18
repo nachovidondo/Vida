@@ -5,12 +5,9 @@
         <title>Vida website</title>
         
         <div align="right">
-    
-    
-      </head>
+           
+        </head>
       <a href="{% url 'mysite' %}" ><button type="button">My site</button></a> 
-      
-      
       <a href="{% url 'contact' %}"><button class="btn btn-danger">Contact us</button></a>
       <a href="{% url 'logout' %}"><button type="button">Logout</button></a> 
         </div>
@@ -22,13 +19,14 @@
               <th>Activity</th>
               <th>Date Time</th>
               <th>Status</th>
-              
-           </tr>
-           <tr>{% for activity in activities %}
-               <td> {{ activity.title }}</td>
+            </tr>
+           {% for activity in activities %}
+           <tr>
+            <td> {{ activity.title }}</td>
             <td>{{ activity.date_time }}</td>
             <td>{% if activity.status %} <span>&#10004;</span> active  {% endif %}</td>
-            {% endfor %}
+            </tr>
+           {% endfor %}
          </table>
      </body>
       

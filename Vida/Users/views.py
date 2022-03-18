@@ -81,7 +81,7 @@ def logoutUsuario(request):
 #UserPlatform
 def mysite(request): 
     now = datetime.now(timezone.utc)
-    activity = Activity.objects.get(date_time__gte=now)
+    activity = Activity.objects.filter(date_time__gte=now).first()
     user_activities = UserActivity.objects.filter(user=request.user).filter(activity__title=activity.title)
     
     return render (request, 'mysite.html',{'user_activities': user_activities})
